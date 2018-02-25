@@ -111,7 +111,7 @@ void Game::update()
 	}
 	
 	
-	/*
+	
 	iter = 0;
 	for (auto &worm : workSqrVec)
 	{
@@ -132,7 +132,7 @@ void Game::update()
 			warSqrVec.erase(warSqrVec.begin() + iter);
 		}
 		++iter;
-	}*/
+	}
 }
 
 void Game::render()

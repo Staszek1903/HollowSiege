@@ -10,6 +10,7 @@ class Worm :
 public:
 
 	Worm(std::pair<float, float> coor, float & scroll);
+	Worm operator=(const Worm &);
 	~Worm();
 
 	int findClosestSquerrel(std::vector<WorkerSquirrel> & workSquirrVec);

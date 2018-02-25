@@ -6,6 +6,11 @@ WorkerSquirrel::WorkerSquirrel(float & scroll)
 
 }
 
+WorkerSquirrel WorkerSquirrel::operator =(const WorkerSquirrel &w)
+{
+	return w;
+}
+
 void WorkerSquirrel::set_root_level(float l)
 {
     root_level = l;
