@@ -14,7 +14,7 @@ Game::Game()
     std::cout<<"debug"<<std::endl;
 
     TreePart temp(scroll);
-    for (int i = 0; i < 4; ++i)
+    for (int i = 0; i < 5; ++i)
         treeParts.push_back(temp);
 
 
