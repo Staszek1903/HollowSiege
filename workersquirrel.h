@@ -16,6 +16,7 @@ class WorkerSquirrel : public Entity
 
 public:
     WorkerSquirrel(float &scroll);
+	WorkerSquirrel operator=(const WorkerSquirrel & w);
     void set_root_level(float l);
     void update(std::vector<Nut> &nuts);
 
