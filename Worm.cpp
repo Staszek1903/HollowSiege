@@ -14,6 +14,7 @@ Worm::~Worm()
 
 int Worm::findClosestSquerrel(std::vector<WorkerSquirrel> & workSquirrVec)
 {
+<<<<<<< HEAD
 	float minDist = FLT_MAX;
 	int unId = -1;
 	for (auto squerrel : workSquirrVec)
@@ -27,6 +28,8 @@ int Worm::findClosestSquerrel(std::vector<WorkerSquirrel> & workSquirrVec)
 			unId = squerrel.id;
 		}
 	}
+=======
+>>>>>>> 6e8c5410ab4675c5ba4abe37b8cb45c493f7687d
 }
 
 void Worm::update(std::vector<WorkerSquirrel> &workSquirrVec)

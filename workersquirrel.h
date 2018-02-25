@@ -2,6 +2,11 @@
 #define WORKERSQUIRREL_H
 
 #include "Entity.h"
+#include "nut.h"
+#include <cmath>
+#include <cfloat>
+
+#define WORKERSPEED 10.0f
 
 class WorkerSquirrel : public Entity
 {
@@ -11,7 +16,10 @@ class WorkerSquirrel : public Entity
 public:
     WorkerSquirrel();
     void set_root_level(float l);
-    void update();
+    void update(std::vector<Nut> &nuts);
+
+    void normalize(sf::Vector2f & vect);
+    float dist_to_nut(Nut & nut);
 };
 
 #endif // WORKERSQUIRREL_H

@@ -10,11 +10,13 @@ SOURCES += main.cpp \
     WarriorSquirrel.cpp \
     Entity.cpp \
     Worm.cpp \
-    workersquirrel.cpp
+    workersquirrel.cpp \
+    nut.cpp
 
 HEADERS += \
     game.h \
     WarriorSquirrel.h \
     Entity.h \
     Worm.h \
-    workersquirrel.h
+    workersquirrel.h \
+    nut.h
