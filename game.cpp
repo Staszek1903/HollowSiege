@@ -1,7 +1,7 @@
 #include "game.h"
 
 Game::Game()
-    :scroll(0.0f), time(sf::Time::Zero), temp_nut(scroll)
+    :scroll(0.0f), time(sf::Time::Zero), temp_nut(scroll), scroll_state(0)
 {
     window.create(sf::VideoMode(800,600), "./squirrel");
     window.setFramerateLimit(60);
@@ -24,7 +24,7 @@ Game::Game()
         treeParts[i].setPosition(sf::Vector2f(400.0f,512.0f*i));
         treeParts[i].SetSpriteTexture("./gfx/pien.png");
 	}
-	treeParts[4].setPosition({ 0,2048 });
+    treeParts[4].setPosition({ 400,0 });
     treeParts[4].SetSpriteTexture("./gfx/dziupla.png");
 
 	treeParts[5].setPosition({ 390,2188 });
@@ -49,7 +49,7 @@ Game::Game()
 	workSqrVec[0].sprite.setPosition(500, 200);
 
 
-    temp_nut.SetSpriteTexture("./gfx/konar2.png");
+    temp_nut.SetSpriteTexture("./gfx/nut.png");
     temp_nut.setPosition(sf::Vector2f(400,2048));
 }
 
@@ -80,18 +80,29 @@ void Game::input()
         {
             int my = ev.mouseMove.y;
             if(my < 100)
-                scroll+=10;
-            if(my > 500)
-                scroll-=10;
+                scroll_state = 1;
+            else if(my > 500)
+                scroll_state = -1;
+            else
+                scroll_state = 0;
         }
     }
 }
 
 void Game::update()
 {
+    if(scroll < -2048)
+        scroll = -2048;
+    else if(scroll > 100)
+        scroll = 100;
+    else
+        scroll += 10 * scroll_state;
+
+    std::cout<<scroll<<std::endl;
+
     while (nuts.size() < 10) {
         int x = engine()%600 +100;
-        int y = engine()%100 + 2000;
+        int y = engine()%100 + 2300;
         temp_nut.setPosition(sf::Vector2f(x,y));
         nuts.push_back(temp_nut);
     }
