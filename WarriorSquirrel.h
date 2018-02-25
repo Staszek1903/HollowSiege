@@ -18,6 +18,8 @@ public:
 
 	float cooldown;
 
+	sf::Vector2f targetPosition;
+
 	float Distance(sf::Vector2f a, sf::Vector2f b);
 
 	void Attack(Entity& character);
@@ -26,6 +28,8 @@ public:
 
 	void MoveToPosition(sf::Vector2f position);
 
+	void Input(sf::Event e);
 
+	void Update(std::vector <Worm> worms);
 };
 

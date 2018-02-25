@@ -5,6 +5,7 @@
 WarriorSquirrel::WarriorSquirrel()
 {
 	cooldown = 0;
+	targetPosition = { 400,100 };
 }
 
 
@@ -19,7 +20,7 @@ float WarriorSquirrel::Distance(sf::Vector2f a, sf::Vector2f b)
 
 void WarriorSquirrel::Attack(Entity & character)
 {
-	if (cooldown == 0)
+	if(isColliding(character) && cooldown == 0)
 	{
 		character.HP -= damagePoints;
 		cooldown = cooldownConst;
@@ -28,10 +29,11 @@ void WarriorSquirrel::Attack(Entity & character)
 
 sf::Vector2f WarriorSquirrel::TargetClosestEnemyPosition(std::vector<Worm> worms)
 {
+	float tmpDist;
 	std::pair<int, float> minDist;
 	minDist.first = 0;
-	minDist.second = Distance(worms.at(0).sprite.getPosition(),sprite.getPosition());
-	float tmpDist;
+	tmpDist = Distance(worms.at(0).sprite.getPosition(),sprite.getPosition());
+	minDist.second = tmpDist;
 	for (unsigned i = 1; i < worms.size(); ++i)
 	{
 		tmpDist = Distance(worms.at(i).sprite.getPosition(), sprite.getPosition());
@@ -41,6 +43,8 @@ sf::Vector2f WarriorSquirrel::TargetClosestEnemyPosition(std::vector<Worm> worms
 			minDist.second = tmpDist;
 		}
 	}
+	if (minDist.second > range)
+		return sprite.getPosition();
 	return worms.at(minDist.first).sprite.getPosition();
 }
 
@@ -54,4 +58,35 @@ void WarriorSquirrel::MoveToPosition(sf::Vector2f position)
 		move({ 0,speed });
 	else 
 		move({ 0,-speed });
+}
+
+void WarriorSquirrel::Input(sf::Event e)
+{
+	if (e.type == sf::Event::MouseButtonPressed)
+	{
+		if (e.mouseButton.button == sf::Mouse::Left)
+		{
+			targetPosition.x = static_cast<float>(sf::Mouse::getPosition().x);
+			targetPosition.y = static_cast<float>(sf::Mouse::getPosition().y);
+		}
+	}
+}
+
+void WarriorSquirrel::Update(std::vector <Worm> worms)
+{
+	if (targetPosition != sprite.getPosition())
+	{
+		MoveToPosition(targetPosition);
+	}
+	if(TargetClosestEnemyPosition(worms)!=sprite.getPosition())
+	{ 
+		MoveToPosition(TargetClosestEnemyPosition(worms));
+	}
+	for(unsigned i = 0; i < worms.size(); ++i)
+	{
+		if (isColliding(worms.at(i)))
+		{
+			Attack(worms.at(i));
+		}
+	}
 }
