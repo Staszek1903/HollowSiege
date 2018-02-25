@@ -1,7 +1,7 @@
 #include "game.h"
 
 Game::Game()
-    :scroll(0.0f), time(sf::Time::Zero)
+    :scroll(0.0f), time(sf::Time::Zero), temp_nut(scroll)
 {
     window.create(sf::VideoMode(800,600), "./squirrel");
     window.setFramerateLimit(60);
@@ -49,6 +49,8 @@ Game::Game()
 	workSqrVec[0].sprite.setPosition(500, 200);
 
 
+    temp_nut.SetSpriteTexture("./gfx/konar2.png");
+    temp_nut.setPosition(sf::Vector2f(400,2048));
 }
 
 void Game::run()
@@ -87,17 +89,27 @@ void Game::input()
 
 void Game::update()
 {
+
 	int iter = 0;
+
+    while (nuts.size() < 10) {
+        int x = engine()%600 +100;
+        int y = engine()%100 + 2000;
+        temp_nut.setPosition(sf::Vector2f(x,y));
+        nuts.push_back(temp_nut);
+    }
+
+
 	for (auto &worm : wormVec)
 	{
 		worm.update(workSqrVec);
 		if (worm.HP < 0.0f)
 		{
-			
+			wormVec.erase(wormVec.begin() + iter);
 		}
-		//++iter;
+		++iter;
 	}
-	wormVec.erase(wormVec.begin() + iter);
+	
 	
 	/*
 	iter = 0;
@@ -139,6 +151,10 @@ void Game::render()
 	{
 		nazwa.Draw(window);
 	}
+    for(auto &nut: nuts)
+    {
+        nut.Draw(window);
+    }
 
    // e1.Draw(window);
     window.display();
