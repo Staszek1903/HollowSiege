@@ -11,7 +11,8 @@ SOURCES += main.cpp \
     Entity.cpp \
     Worm.cpp \
     workersquirrel.cpp \
-    nut.cpp
+    nut.cpp \
+    TreePart.cpp
 
 HEADERS += \
     game.h \
@@ -19,4 +20,5 @@ HEADERS += \
     Entity.h \
     Worm.h \
     workersquirrel.h \
-    nut.h
+    nut.h \
+    TreePart.h
