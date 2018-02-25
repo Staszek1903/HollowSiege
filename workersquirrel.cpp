@@ -39,7 +39,7 @@ void WorkerSquirrel::update(std::vector<Nut> &nuts)
         else
         {
             float dist = FLT_MAX;
-            Nut *target;
+            Nut *target = nullptr;
             for(auto &n:nuts)
             {
                 float temp = dist_to_nut(n);

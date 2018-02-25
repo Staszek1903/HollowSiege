@@ -7,6 +7,7 @@
 #include "WarriorSquirrel.h"
 #include "workersquirrel.h"
 #include "Worm.h"
+#include "TreePart.h"
 
 class Game
 {
@@ -20,6 +21,7 @@ public:
 	std::vector<WorkerSquirrel> workSqrVec;
 	std::vector<WarriorSquirrel> warSqrVec;
 	std::vector<Worm> wormVec;
+	TreePart treeParts[5];
 
     Game();
     void run();
