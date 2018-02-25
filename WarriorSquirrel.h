@@ -1,5 +1,7 @@
 #pragma once
 #include "Entity.h"
+#include "Worm.h"
+#include <vector>
 class WarriorSquirrel :
 	public Entity
 {
@@ -13,7 +15,12 @@ public:
 
 	float cooldown;
 
+	float Distance(sf::Vector2f a, sf::Vector2f b);
+
 	void Attack(Entity& character);
 
+	sf::Vector2f TargetClosestEnemyPosition(std::vector<Worm> worms);
+
+	void MoveToPosition(sf::Vector2f position);
 };
 
