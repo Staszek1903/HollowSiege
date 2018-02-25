@@ -13,6 +13,8 @@ void WorkerSquirrel::set_root_level(float l)
 
 void WorkerSquirrel::update(std::vector<Nut> &nuts)
 {
+
+
     if(has_nut)
     {
         float vpos = sprite.getPosition().x;

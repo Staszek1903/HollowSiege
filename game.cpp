@@ -87,14 +87,40 @@ void Game::input()
 
 void Game::update()
 {
+	int iter = 0;
 	for (auto &worm : wormVec)
 	{
 		worm.update(workSqrVec);
+		if (worm.HP < 0.0f)
+		{
+			
+		}
+		//++iter;
 	}
+	wormVec.erase(wormVec.begin() + iter);
+	
+	/*
+	iter = 0;
 	for (auto &worm : workSqrVec)
 	{
 		//worm.update();
+		if (worm.HP < 0.f)
+		{
+			workSqrVec.erase(workSqrVec.begin() + iter);
+		}
+		++iter;
 	}
+
+	iter = 0;
+	for (auto &worm : warSqrVec)
+	{
+		//worm.update();
+		if (worm.HP < 0.f)
+		{
+			warSqrVec.erase(warSqrVec.begin() + iter);
+		}
+		++iter;
+	}*/
 }
 
 void Game::render()
