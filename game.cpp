@@ -105,6 +105,10 @@ void Game::update()
         temp_nut.setPosition(sf::Vector2f(x,y));
         nuts.push_back(temp_nut);
     }
+	for (auto & work : workSqrVec)
+	{
+		work.update(nuts);
+	}
 
 
 	for (auto &worm : wormVec)
@@ -122,12 +126,6 @@ void Game::update()
 		wormVec.erase(wormVec.begin() + iterToRem);
 	}
 	
-	
-    for(auto & work: workSqrVec)
-    {
-        work.update(nuts);
-    }
-
 	iter = 0;
 	iterToRem = -1;
 	for (auto &worm : workSqrVec)

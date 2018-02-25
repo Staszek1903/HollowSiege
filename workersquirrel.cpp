@@ -7,9 +7,11 @@ WorkerSquirrel::WorkerSquirrel(float & scroll)
     sprite.rotate(180);
 }
 
-WorkerSquirrel WorkerSquirrel::operator =(const WorkerSquirrel &w)
+WorkerSquirrel& WorkerSquirrel::operator =(const WorkerSquirrel &w)
 {
-	return w;
+    root_level = w.root_level;
+    has_nut = w.has_nut;
+    return *this;
 }
 
 void WorkerSquirrel::set_root_level(float l)

@@ -10,6 +10,14 @@ WarriorSquirrel::WarriorSquirrel(float &scroll)
 }
 
 
+WarriorSquirrel& WarriorSquirrel::operator =(const WarriorSquirrel &w)
+{
+    cooldown = w.cooldown;
+
+    return *this;
+}
+
+
 WarriorSquirrel::~WarriorSquirrel()
 {
 }
