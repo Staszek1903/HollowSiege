@@ -14,7 +14,7 @@ class WorkerSquirrel : public Entity
     bool has_nut;
 
 public:
-    WorkerSquirrel();
+    WorkerSquirrel(float &scroll);
     void set_root_level(float l);
     void update(std::vector<Nut> &nuts);
 

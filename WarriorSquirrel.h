@@ -8,7 +8,7 @@ class WarriorSquirrel :
 	public Entity
 {
 public:
-	WarriorSquirrel();
+    WarriorSquirrel(float &scroll);
 	~WarriorSquirrel();
 
 	const float damagePoints = 5;

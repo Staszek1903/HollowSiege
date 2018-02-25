@@ -12,16 +12,18 @@
 class Game
 {
     sf::RenderWindow window;
-    Entity e1;
+    //Entity e1;
 
     sf::Sprite background;
     sf::Texture bg_tex;
+
+    float scroll;
 
 public:
 	std::vector<WorkerSquirrel> workSqrVec;
 	std::vector<WarriorSquirrel> warSqrVec;
 	std::vector<Worm> wormVec;
-	TreePart treeParts[5];
+    std::vector<TreePart> treeParts;
 
     Game();
     void run();

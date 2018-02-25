@@ -1,7 +1,7 @@
 #include "Entity.h"
 
-Entity::Entity()
-    :scrollOffset(0.0f)
+Entity::Entity(float & scroll)
+    :scrollOffset(scroll)
 {
     static int id_count = 0;
     id = id_count++;

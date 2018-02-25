@@ -2,7 +2,8 @@
 
 
 
-TreePart::TreePart()
+TreePart::TreePart(float & scroll)
+    :Entity(scroll)
 {
 }
 

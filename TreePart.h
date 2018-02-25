@@ -4,7 +4,7 @@ class TreePart :
 	public Entity
 {
 public:
-	TreePart();
+    TreePart(float & scroll);
 	~TreePart();
 };
 

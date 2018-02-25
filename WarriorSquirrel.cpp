@@ -2,7 +2,8 @@
 
 
 
-WarriorSquirrel::WarriorSquirrel()
+WarriorSquirrel::WarriorSquirrel(float &scroll)
+    :Entity(scroll)
 {
 	cooldown = 0;
 	targetPosition = { 400,100 };

@@ -6,7 +6,7 @@
 class Nut : public Entity
 {
 public:
-    Nut();
+    Nut(float & scroll);
 };
 
 #endif // NUT_H

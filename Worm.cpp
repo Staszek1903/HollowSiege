@@ -2,7 +2,7 @@
 
 
 
-Worm::Worm(std::pair<float,float> coor) :  MAX_DIST_SQR(1000)
+Worm::Worm(std::pair<float,float> coor, float & scroll) :  MAX_DIST_SQR(1000), Entity(scroll)
 {
 }
 

@@ -7,7 +7,7 @@
 class Entity
 {
 public:
-	Entity();
+    Entity(float & scroll);
 	~Entity();
 
     int id;
@@ -16,7 +16,7 @@ public:
 	sf::Sprite sprite;
     sf::Rect<int> bounding;
     sf::Vector2f lastPos;
-    float scrollOffset;
+    float & scrollOffset;
 
 	float HP;
 
