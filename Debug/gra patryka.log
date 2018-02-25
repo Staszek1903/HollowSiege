@@ -1,0 +1,14 @@
+﻿  Worm.cpp
+c:\users\lele\documents\visual studio 2015\projects\gra patryka\gra patryka\worm.cpp(31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\lele\documents\visual studio 2015\projects\gra patryka\gra patryka\worm.cpp(62): warning C4305: '-=': truncation from 'double' to 'float'
+  workersquirrel.cpp
+  WarriorSquirrel.cpp
+  TreePart.cpp
+  nut.cpp
+  main.cpp
+  game.cpp
+  Entity.cpp
+c:\users\lele\documents\visual studio 2015\projects\gra patryka\gra patryka\entity.cpp(20): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  gra patryka.vcxproj -> c:\users\lele\documents\visual studio 2015\Projects\gra patryka\Debug\gra patryka.exe
+  gra patryka.vcxproj -> c:\users\lele\documents\visual studio 2015\Projects\gra patryka\Debug\gra patryka.pdb (Full PDB)
