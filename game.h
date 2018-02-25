@@ -13,6 +13,9 @@ class Game
     sf::RenderWindow window;
     Entity e1;
 
+    sf::Sprite background;
+    sf::Texture bg_tex;
+
 public:
 	std::vector<WorkerSquirrel> workSqrVec;
 	std::vector<WarriorSquirrel> warSqrVec;
