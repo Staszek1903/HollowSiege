@@ -139,7 +139,7 @@ void Game::update()
 	}
 	if (iterToRem > -1)
 	{
-		wormVec.erase(wormVec.begin() + iterToRem);
+		workSqrVec.erase(workSqrVec.begin() + iterToRem);
 	}
 
 	iter = 0;
@@ -155,7 +155,7 @@ void Game::update()
 	}
 	if (iterToRem > -1)
 	{
-		wormVec.erase(wormVec.begin() + iterToRem);
+		warSqrVec.erase(warSqrVec.begin() + iterToRem);
 	}
 }
 
