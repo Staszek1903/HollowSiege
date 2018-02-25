@@ -12,6 +12,8 @@ public:
 
 	sf::Texture texture;
 	sf::Sprite sprite;
+    sf::Rect<int> bounding;
+    sf::Vector2f lastPos;
 
 	float HP;
 
@@ -25,6 +27,7 @@ public:
 
     bool isColliding(Entity & en);
     void move(sf::Vector2f offset);
+    void rotate(float angle);
 };
 
 #endif // ENTITY_H
