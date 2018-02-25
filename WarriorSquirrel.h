@@ -9,7 +9,7 @@ class WarriorSquirrel :
 {
 public:
     WarriorSquirrel(float &scroll);
-	WarriorSquirrel operator=(const WarriorSquirrel & w);
+    WarriorSquirrel& operator=(const WarriorSquirrel & w);
 	~WarriorSquirrel();
 
 	const float damagePoints = 5;

@@ -7,9 +7,9 @@ Worm::Worm(std::pair<float, float> coor, float & scroll) : MAX_DIST_SQR(1000000)
 	this->sprite.setPosition(coor.first,coor.second);
 }
 
-Worm Worm::operator =(const Worm &w)
+Worm& Worm::operator =(const Worm &other)
 {
-	return w;
+    return *this;
 }
 
 Worm::~Worm()
