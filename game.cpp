@@ -11,10 +11,10 @@ Game::Game()
     background.setTexture(bg_tex);
     background.setScale(sf::Vector2f(1.6f,1.2f));
 
-    std::cout<<"debug"<<std::endl;
+    std::cout<< "debug" <<std::endl;
 
     TreePart temp(scroll);
-    for (int i = 0; i < 5; ++i)
+    for (int i = 0; i < 6; ++i)
         treeParts.push_back(temp);
 
 
@@ -27,7 +27,11 @@ Game::Game()
 	treeParts[4].setPosition({ 0,2048 });
     treeParts[4].SetSpriteTexture("./gfx/dziupla.png");
 
-    std::cout<<"debug2"<<std::endl;
+	treeParts[5].setPosition({ 390,2188 });
+	treeParts[5].SetSpriteTexture("./gfx/korzen.png");
+    std::cout<< "debug2" <<std::endl;
+
+
 
 	/////
 	Worm w1(std::pair<float,float>(400,300),scroll);
@@ -95,6 +99,10 @@ void Game::update()
 	for (auto &worm : wormVec)
 	{
 		worm.update(workSqrVec);
+	}
+	for (auto &worm : workSqrVec)
+	{
+		//worm.update();
 	}
 }
 
