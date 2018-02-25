@@ -3,8 +3,9 @@
 Entity::Entity()
     :scrollOffset(0.0f)
 {
+    static int id_count = 0;
+    id = id_count++;
 }
-
 
 Entity::~Entity()
 {

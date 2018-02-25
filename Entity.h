@@ -10,6 +10,8 @@ public:
 	Entity();
 	~Entity();
 
+    int id;
+
 	sf::Texture texture;
 	sf::Sprite sprite;
     sf::Rect<int> bounding;

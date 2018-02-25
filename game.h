@@ -3,8 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
-#include "WarriorSquirrel.h"
-#include "workersquirrel.h"
 
 class Game
 {
@@ -12,9 +10,6 @@ class Game
     Entity e1;
 
 public:
-	std::vector<WarriorSquirrel> warSquirrVec;
-	std::vector<Worm> wormVec;
-	std::vector<WorkerSquirrel> workSquirrVec;
     Game();
     void run();
 private:
