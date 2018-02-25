@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
 #include "WarriorSquirrel.h"

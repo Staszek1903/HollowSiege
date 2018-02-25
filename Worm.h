@@ -6,12 +6,11 @@ class Worm :
 {
 	const float MAX_DIST_SQR;
 public:
-	std::pair<float, float> coordinates;
 
 	Worm(std::pair<float, float>);
 	~Worm();
 
-	void findClosestSquerrel(std::vector<WorkerSquirrel> & workSquirrVec);
+	int findClosestSquerrel(std::vector<WorkerSquirrel> & workSquirrVec);
 
 	void update(std::vector<WorkerSquirrel> &workSquirrVec);
 };
