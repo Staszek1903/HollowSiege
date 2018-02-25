@@ -14,11 +14,6 @@ Worm::~Worm()
 
 void Worm::findClosestSquerrel()
 {
-	float minDist = FLT_MAX;
-	for (auto squerrel : )
-	{
-
-	}
 }
 
 void Worm::update()
