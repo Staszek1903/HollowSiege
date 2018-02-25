@@ -5,8 +5,9 @@
 #include "nut.h"
 #include <cmath>
 #include <cfloat>
+#include <iostream>
 
-#define WORKERSPEED 10.0f
+#define WORKERSPEED 3.0f
 
 class WorkerSquirrel : public Entity
 {

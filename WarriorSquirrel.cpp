@@ -9,10 +9,6 @@ WarriorSquirrel::WarriorSquirrel(float &scroll)
 	targetPosition = { 400,100 };
 }
 
-WarriorSquirrel WarriorSquirrel::operator =(const WarriorSquirrel &w)
-{
-	return w;
-}
 
 WarriorSquirrel::~WarriorSquirrel()
 {

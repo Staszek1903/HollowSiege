@@ -10,6 +10,8 @@ public:
     Entity(float & scroll);
 	~Entity();
 
+    Entity& operator=(const Entity& other);
+
     int id;
 
 	sf::Texture texture;

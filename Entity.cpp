@@ -11,6 +11,21 @@ Entity::~Entity()
 {
 }
 
+Entity &Entity::operator=(const Entity &other)
+{
+    id = other.id;
+
+    texture = other.texture;
+    sprite = other.sprite;
+    bounding = other.bounding;
+    lastPos = other.lastPos;
+    scrollOffset = other.scrollOffset;
+
+    HP = other.HP;
+
+    return *this;
+}
+
 void Entity::SetSpriteTexture(std::string texturePath)
 {
 	texture.loadFromFile(texturePath);

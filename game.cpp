@@ -11,7 +11,7 @@ Game::Game()
     background.setTexture(bg_tex);
     background.setScale(sf::Vector2f(1.6f,1.2f));
 
-    std::cout<< "debug" <<std::endl;
+   //std::cout<< "debug" <<std::endl;
 
     TreePart temp(scroll);
     for (int i = 0; i < 6; ++i)
@@ -29,7 +29,7 @@ Game::Game()
 
 	treeParts[5].setPosition({ 390,2188 });
 	treeParts[5].SetSpriteTexture("./gfx/korzen.png");
-    std::cout<< "debug2" <<std::endl;
+    //std::cout<< "debug2" <<std::endl;
 
 
 
@@ -45,7 +45,6 @@ Game::Game()
 	WorkerSquirrel wo1(scroll);
 	workSqrVec.push_back(wo1);
 	workSqrVec[0].SetSpriteTexture("./gfx/wor_sqr.png");
-	workSqrVec[0].sprite.setScale(0.25, 0.25);
 	workSqrVec[0].sprite.setPosition(500, 200);
 
 
@@ -91,14 +90,12 @@ void Game::input()
 
 void Game::update()
 {
-    if(scroll < -2048)
-        scroll = -2048;
+    scroll += 10 * scroll_state;
+
+    if(scroll < -2000)
+        scroll = -2000;
     else if(scroll > 100)
         scroll = 100;
-    else
-        scroll += 10 * scroll_state;
-
-   // std::cout<<scroll<<std::endl;
 
 	int iter = 0, iterToRem =-1 ;
 
@@ -125,6 +122,12 @@ void Game::update()
 		wormVec.erase(wormVec.begin() + iterToRem);
 	}
 	
+	
+    for(auto & work: workSqrVec)
+    {
+        work.update(nuts);
+    }
+
 	iter = 0;
 	iterToRem = -1;
 	for (auto &worm : workSqrVec)

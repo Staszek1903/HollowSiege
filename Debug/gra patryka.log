@@ -1,5 +1,5 @@
 ﻿  game.cpp
-c:\users\lele\documents\visual studio 2015\projects\gra patryka\gra patryka\game.cpp(108): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\lele\documents\visual studio 2015\projects\gra patryka\gra patryka\game.cpp(105): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(172): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
   c:\users\lele\documents\visual studio 2015\projects\gra patryka\gra patryka\game.cpp(37): note: see reference to function template instantiation 'std::pair<float,float>::pair<int,int,void,0>(_Other1 &&,_Other2 &&) noexcept' being compiled
           with
@@ -13,5 +13,32 @@ c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(172): war
               _Other1=int,
               _Other2=int
           ]
-  gra patryka.vcxproj -> c:\users\lele\documents\visual studio 2015\Projects\gra patryka\Debug\gra patryka.exe
-  gra patryka.vcxproj -> c:\users\lele\documents\visual studio 2015\Projects\gra patryka\Debug\gra patryka.pdb (Full PDB)
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\xutility(2581): error C2280: 'Worm &Worm::operator =(const Worm &)': attempting to reference a deleted function
+  c:\users\lele\documents\visual studio 2015\projects\gra patryka\gra patryka\worm.h(26): note: compiler has generated 'Worm::operator =' here
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\xutility(2599): note: see reference to function template instantiation '_OutIt std::_Move_unchecked1<_InIt,_OutIt>(_InIt,_InIt,_OutIt,std::_General_ptr_iterator_tag)' being compiled
+          with
+          [
+              _OutIt=Worm *,
+              _InIt=Worm *
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(1475): note: see reference to function template instantiation '_OutIt *std::_Move_unchecked<Worm*,Worm*>(_InIt,_InIt,_OutIt)' being compiled
+          with
+          [
+              _OutIt=Worm *,
+              _InIt=Worm *
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vector(1470): note: while compiling class template member function 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<Worm>>> std::vector<Worm,std::allocator<_Ty>>::erase(std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<Worm>>>)'
+          with
+          [
+              _Ty=Worm
+          ]
+  c:\users\lele\documents\visual studio 2015\projects\gra patryka\gra patryka\game.cpp(122): note: see reference to function template instantiation 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<Worm>>> std::vector<Worm,std::allocator<_Ty>>::erase(std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<Worm>>>)' being compiled
+          with
+          [
+              _Ty=Worm
+          ]
+  c:\users\lele\documents\visual studio 2015\projects\gra patryka\gra patryka\game.h(32): note: see reference to class template instantiation 'std::vector<Worm,std::allocator<_Ty>>' being compiled
+          with
+          [
+              _Ty=Worm
+          ]
