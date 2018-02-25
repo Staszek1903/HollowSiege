@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include "Entity.h"
 #include "workersquirrel.h"
 #include "cmath"
