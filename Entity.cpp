@@ -37,5 +37,15 @@ float Entity::Bottom()
 
 void Entity::Draw(sf::RenderWindow& win)
 {
-	win.draw(sprite);
+    win.draw(sprite);
+}
+
+bool Entity::isColliding(Entity &en)
+{
+    return(en.Left() < Right() && en.Right() > Left() && en.Top() > Bottom() && en.Top());
+}
+
+void Entity::move(sf::Vector2f offset)
+{
+    sprite.move(offset.x, offset.y);
 }

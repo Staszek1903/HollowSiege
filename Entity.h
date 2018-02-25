@@ -1,5 +1,7 @@
-#pragma once
-#include <SFML\Graphics.hpp>
+#ifndef ENTITY_H
+#define ENTITY_H
+
+#include <SFML/Graphics.hpp>
 #include <string>
 
 class Entity
@@ -20,5 +22,9 @@ public:
 
 	void SetSpriteTexture(std::string texturePath);
 	void Draw(sf::RenderWindow& win);
+
+    bool isColliding(Entity & en);
+    void move(sf::Vector2f offset);
 };
 
+#endif // ENTITY_H

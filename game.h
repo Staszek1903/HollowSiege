@@ -2,10 +2,12 @@
 #define GAME_H
 
 #include <SFML/Graphics.hpp>
+#include "Entity.h"
 
 class Game
 {
     sf::RenderWindow window;
+    Entity e1;
 
 public:
     Game();

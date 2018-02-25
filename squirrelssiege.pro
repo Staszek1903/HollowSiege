@@ -6,7 +6,11 @@ CONFIG -= qt
 LIBS += -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-window -lsfml-system
 
 SOURCES += main.cpp \
-    game.cpp
+    game.cpp \
+    WarriorSquirrel.cpp \
+    Entity.cpp
 
 HEADERS += \
-    game.h
+    game.h \
+    WarriorSquirrel.h \
+    Entity.h
