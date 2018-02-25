@@ -2,7 +2,7 @@
 
 
 
-Worm::Worm(std::pair<float, float> coor, float & scroll) : MAX_DIST_SQR(1000), Entity(scroll)
+Worm::Worm(std::pair<float, float> coor, float & scroll) : MAX_DIST_SQR(1000000), Entity(scroll)
 {
 	this->sprite.setPosition(coor.first,coor.second);
 }
@@ -62,8 +62,10 @@ void Worm::moveToBase()
 	float vecLengh = sqrtf(vec.x*vec.x + vec.y*vec.y);
 
 	vec /= vecLengh;
-
-	this->sprite.setPosition(this->sprite.getPosition().x + vec.x, this->sprite.getPosition().y + vec.y);
+	if (vecLengh > 1)
+	{
+		this->sprite.setPosition(this->sprite.getPosition().x + vec.x, this->sprite.getPosition().y + vec.y);
+	}
 }
 bool Worm::damageIfPossible(std::vector<WorkerSquirrel> &workSquirrVec, int id, int dist)
 {
@@ -85,6 +87,10 @@ void Worm::update(std::vector<WorkerSquirrel> &workSquirrVec)
 	if (unId >= 0)
 	{
 		moveToSqrl(workSquirrVec, unId);
+	}
+	else
+	{
+		moveToBase();
 	}
 
 }

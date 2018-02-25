@@ -18,7 +18,8 @@ class Game
     sf::Texture bg_tex;
 
     float scroll;
-
+	sf::Clock clk;
+	sf::Time time;
 public:
 	std::vector<WorkerSquirrel> workSqrVec;
 	std::vector<WarriorSquirrel> warSqrVec;

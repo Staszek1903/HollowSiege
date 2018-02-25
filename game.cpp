@@ -1,7 +1,7 @@
 #include "game.h"
 
 Game::Game()
-    :scroll(0.0f)
+    :scroll(0.0f), time(sf::Time::Zero)
 {
     window.create(sf::VideoMode(800,600), "./squirrel");
     window.setFramerateLimit(60);
@@ -28,15 +28,37 @@ Game::Game()
     treeParts[4].SetSpriteTexture("./gfx/dziupla.png");
 
     std::cout<<"debug2"<<std::endl;
+
+	/////
+	Worm w1(std::pair<float,float>(400,300),scroll);
+	wormVec.push_back(w1);
+	wormVec[0].SetSpriteTexture("./gfx/chroboq.png");
+	wormVec[0].sprite.setScale(0.25, 0.25);
+
+
+	////
+
+	WorkerSquirrel wo1(scroll);
+	workSqrVec.push_back(wo1);
+	workSqrVec[0].SetSpriteTexture("./gfx/wor_sqr.png");
+	workSqrVec[0].sprite.setScale(0.25, 0.25);
+	workSqrVec[0].sprite.setPosition(500, 200);
+
+
 }
 
 void Game::run()
 {
     while(window.isOpen())
     {
-        input();
-        update();
-        render();
+		time += clk.restart();
+		if (time.asMilliseconds() > 1000/60)
+		{
+			input();
+			update();
+			render();
+			time = sf::Time::Zero;
+		}
     }
 }
 
@@ -61,7 +83,10 @@ void Game::input()
 
 void Game::update()
 {
-
+	for (auto &worm : wormVec)
+	{
+		worm.update(workSqrVec);
+	}
 }
 
 void Game::render()
@@ -72,6 +97,15 @@ void Game::render()
 	{
 		nazwa.Draw(window);
 	}
+	for (auto &nazwa : workSqrVec)
+	{
+		nazwa.Draw(window);
+	}
+	for (auto &nazwa : wormVec)
+	{
+		nazwa.Draw(window);
+	}
+
    // e1.Draw(window);
     window.display();
 }
