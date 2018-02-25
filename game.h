@@ -19,6 +19,8 @@ class Game
     sf::Sprite background;
     sf::Texture bg_tex;
 
+    int scroll_state; // 0=NULL -1=UP 1=DOWN
+
     std::default_random_engine engine;
     float scroll;
 	sf::Clock clk;
