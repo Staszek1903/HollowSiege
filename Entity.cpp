@@ -1,6 +1,7 @@
 #include "Entity.h"
 
 Entity::Entity()
+    :scrollOffset(0.0f)
 {
 }
 
@@ -40,7 +41,10 @@ float Entity::Bottom()
 
 void Entity::Draw(sf::RenderWindow& win)
 {
+    sf::Vector2f pos = sprite.getPosition();
+    sprite.move(sf::Vector2f(0,scrollOffset));
     win.draw(sprite);
+    sprite.setPosition(pos);
 }
 
 bool Entity::isColliding(Entity &en)
@@ -51,6 +55,11 @@ bool Entity::isColliding(Entity &en)
 void Entity::move(sf::Vector2f offset)
 {
     sprite.move(offset.x, offset.y);
+}
+
+void Entity::setPosition(sf::Vector2f pos)
+{
+    sprite.setPosition(pos);
 }
 
 void Entity::rotate(float angle)

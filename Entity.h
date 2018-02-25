@@ -14,6 +14,7 @@ public:
 	sf::Sprite sprite;
     sf::Rect<int> bounding;
     sf::Vector2f lastPos;
+    float scrollOffset;
 
 	float HP;
 
@@ -27,6 +28,7 @@ public:
 
     bool isColliding(Entity & en);
     void move(sf::Vector2f offset);
+    void setPosition(sf::Vector2f);
     void rotate(float angle);
 };
 
