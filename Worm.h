@@ -12,6 +12,8 @@ public:
 
 	int findClosestSquerrel(std::vector<WorkerSquirrel> & workSquirrVec);
 
+	void move(int id);
+
 	void update(std::vector<WorkerSquirrel> &workSquirrVec);
 };
 
