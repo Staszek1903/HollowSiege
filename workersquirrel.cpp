@@ -1,7 +1,7 @@
 #include "workersquirrel.h"
 
-WorkerSquirrel::WorkerSquirrel()
-    :has_nut(false),root_level(0.0f)
+WorkerSquirrel::WorkerSquirrel(float & scroll)
+    :has_nut(false),root_level(0.0f), Entity(scroll)
 {
 
 }
