@@ -4,7 +4,13 @@ class Worm :
 	public Entity
 {
 public:
-	Worm();
+	std::pair<float, float> coordinates;
+
+	Worm(std::pair<float, float> );
 	~Worm();
+
+	void findClosestSquerrel();
+
+	void update();
 };
 
