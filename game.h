@@ -4,6 +4,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <random>
+#include <sstream>
 #include "Entity.h"
 #include "WarriorSquirrel.h"
 #include "workersquirrel.h"
@@ -16,8 +17,12 @@ class Game
     sf::RenderWindow window;
     //Entity e1;
 
-    sf::Sprite background;
-    sf::Texture bg_tex;
+    sf::Sprite background, nut;
+    sf::Texture bg_tex, nut_tex;
+
+    sf::Font comic;
+    sf::Text nut_am;
+    int nut_amount;
 
     int scroll_state; // 0=NULL -1=UP 1=DOWN
 

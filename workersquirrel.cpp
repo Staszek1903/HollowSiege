@@ -19,10 +19,10 @@ void WorkerSquirrel::set_root_level(float l)
     root_level = l;
 }
 
-void WorkerSquirrel::update(std::vector<Nut> &nuts)
+bool WorkerSquirrel::update(std::vector<Nut> &nuts)
 {
-
-    std::cout<<has_nut<<std::endl;
+    bool ret = false;
+   // std::cout<<has_nut<<std::endl;
     if(has_nut)
     {
         float vpos = sprite.getPosition().x;
@@ -30,7 +30,12 @@ void WorkerSquirrel::update(std::vector<Nut> &nuts)
         float hpos = sprite.getPosition().y;
 
         if(hpos <0)
+        {
             has_nut = false;
+            sprite.rotate(180);
+            ret = true;
+
+        }
 
         if(abs(vpos) <20)
             move(sf::Vector2f(0, -WORKERSPEED));
@@ -60,14 +65,14 @@ void WorkerSquirrel::update(std::vector<Nut> &nuts)
                 dist = (temp<dist)? temp:dist;
             }
 
-            std::cout<<dist<<std::endl;
+           // std::cout<<dist<<std::endl;
             if( dist > 10)
             {
 
                 sf::Vector2f distv =  target->sprite.getPosition() - sprite.getPosition();
                 normalize(distv);
                 distv *= WORKERSPEED;
-                std::cout<<"distv: "<<distv.x<< "  "<<distv.y<<std::endl;
+                //std::cout<<"distv: "<<distv.x<< "  "<<distv.y<<std::endl;
                 move(distv);
 
                 dist = dist_to_nut(*target);
@@ -82,6 +87,8 @@ void WorkerSquirrel::update(std::vector<Nut> &nuts)
         }
 
     }
+
+    return ret;
 }
 
 void WorkerSquirrel::normalize(sf::Vector2f &vect)

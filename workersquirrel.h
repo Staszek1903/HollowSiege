@@ -18,7 +18,7 @@ public:
     WorkerSquirrel(float &scroll);
     WorkerSquirrel& operator=(const WorkerSquirrel & w);
     void set_root_level(float l);
-    void update(std::vector<Nut> &nuts);
+    bool update(std::vector<Nut> &nuts);
 
     void normalize(sf::Vector2f & vect);
     float dist_to_nut(Nut & nut);
