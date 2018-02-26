@@ -35,6 +35,8 @@ public:
 
     Game();
     void run();
+	void spawnR();
+	void spawnT();
 private:
     void input();
     void update();

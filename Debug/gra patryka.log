@@ -1,5 +1,5 @@
 ﻿  game.cpp
-c:\users\lele\documents\visual studio 2015\projects\gra patryka\gra patryka\game.cpp(105): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\lele\documents\visual studio 2015\projects\gra patryka\gra patryka\game.cpp(126): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(172): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
   c:\users\lele\documents\visual studio 2015\projects\gra patryka\gra patryka\game.cpp(37): note: see reference to function template instantiation 'std::pair<float,float>::pair<int,int,void,0>(_Other1 &&,_Other2 &&) noexcept' being compiled
           with

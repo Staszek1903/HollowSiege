@@ -42,10 +42,7 @@ Game::Game()
 
 	////
 
-	WorkerSquirrel wo1(scroll);
-	workSqrVec.push_back(wo1);
-	workSqrVec[0].SetSpriteTexture("./gfx/wor_sqr.png");
-	workSqrVec[0].sprite.setPosition(500, 200);
+
 
 
     temp_nut.SetSpriteTexture("./gfx/nut.png");
@@ -67,13 +64,37 @@ void Game::run()
     }
 }
 
+void Game::spawnR()
+{
+	WorkerSquirrel wo1(scroll);
+	workSqrVec.push_back(wo1);
+	workSqrVec[workSqrVec.size() - 1].SetSpriteTexture("./gfx/wor_sqr.png");
+	workSqrVec[workSqrVec.size() - 1].sprite.setPosition(400, 2);
+}
+void Game::spawnT()
+{
+	WarriorSquirrel wo1(scroll);
+	warSqrVec.push_back(wo1);
+	warSqrVec[warSqrVec.size() - 1].SetSpriteTexture("./gfx/atk_sqr.png");
+	warSqrVec[warSqrVec.size() - 1].sprite.setPosition(400, 2);
+}
 void Game::input()
 {
     sf::Event ev;
     while(window.pollEvent(ev))
     {
-        if(ev.type == sf::Event::KeyPressed)
-            window.close();
+		if (ev.type == sf::Event::KeyPressed)
+		{
+			if (ev.key.code == sf::Keyboard::R)
+			{
+				std::cout << "R" << std::endl;
+				spawnR();
+			}
+			if (ev.key.code == sf::Keyboard::T)
+			{
+				spawnT();
+			}
+		}
 
         if(ev.type == sf::Event::MouseMoved)
         {
@@ -172,6 +193,10 @@ void Game::render()
 		nazwa.Draw(window);
 	}
 	for (auto &nazwa : wormVec)
+	{
+		nazwa.Draw(window);
+	}
+	for (auto &nazwa : warSqrVec)
 	{
 		nazwa.Draw(window);
 	}
