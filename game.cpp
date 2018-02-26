@@ -83,7 +83,7 @@ void Game::spawnR()
 }
 void Game::spawnT()
 {
-	WarriorSquirrel wo1(scroll);
+    WarriorSquirrel wo1(scroll, wormVec);
 	warSqrVec.push_back(wo1);
 	warSqrVec[warSqrVec.size() - 1].SetSpriteTexture("./gfx/atk_sqr.png");
 	warSqrVec[warSqrVec.size() - 1].sprite.setPosition(400, 2);
@@ -94,8 +94,13 @@ void Game::input()
     sf::Event ev;
     while(window.pollEvent(ev))
     {
+        for(auto &atk: warSqrVec)
+            atk.Input(ev);
+
 		if (ev.type == sf::Event::KeyPressed)
 		{
+            if(ev.key.code == sf::Keyboard::Escape)
+                window.close();
 			if (ev.key.code == sf::Keyboard::R)
 			{
 				
@@ -141,6 +146,11 @@ void Game::update()
 	{
 		work.update(nuts);
 	}
+
+    for(auto & atk: warSqrVec)
+    {
+       atk.Update();
+    }
 
 
 	for (auto &worm : wormVec)

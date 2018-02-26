@@ -2,11 +2,10 @@
 
 
 
-WarriorSquirrel::WarriorSquirrel(float &scroll)
-    :Entity(scroll)
+WarriorSquirrel::WarriorSquirrel(float &scroll,std::vector <Worm>& worms)
+    :Entity(scroll), worms(worms), active(false), target(sf::Vector2f(0,0)), targeting(false)
 {
-	cooldown = 0;
-	targetPosition = { 400,100 };
+    cooldown = 0;
 }
 
 
@@ -22,80 +21,67 @@ WarriorSquirrel::~WarriorSquirrel()
 {
 }
 
-float WarriorSquirrel::Distance(sf::Vector2f a, sf::Vector2f b)
-{
-	return sqrt((a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y));
-}
-
-void WarriorSquirrel::Attack(Entity & character)
-{
-	if(isColliding(character) && cooldown == 0)
-	{
-		character.HP -= damagePoints;
-		cooldown = cooldownConst;
-	}
-}
-
-sf::Vector2f WarriorSquirrel::TargetClosestEnemyPosition(std::vector<Worm> worms)
-{
-	float tmpDist;
-	std::pair<int, float> minDist;
-	minDist.first = 0;
-	tmpDist = Distance(worms.at(0).sprite.getPosition(),sprite.getPosition());
-	minDist.second = tmpDist;
-	for (unsigned i = 1; i < worms.size(); ++i)
-	{
-		tmpDist = Distance(worms.at(i).sprite.getPosition(), sprite.getPosition());
-		if (tmpDist<minDist.second && tmpDist<=range)
-		{
-			minDist.first = i;
-			minDist.second = tmpDist;
-		}
-	}
-	if (minDist.second > range)
-		return sprite.getPosition();
-	return worms.at(minDist.first).sprite.getPosition();
-}
-
-void WarriorSquirrel::MoveToPosition(sf::Vector2f position)
-{
-	if (position.x > sprite.getPosition().x)
-		move({ speed, 0 });
-	else
-		move({ -speed,0 });
-	if (position.y > sprite.getPosition().y)
-		move({ 0,speed });
-	else 
-		move({ 0,-speed });
-}
 
 void WarriorSquirrel::Input(sf::Event e)
 {
+    if( e.type == sf::Event::MouseMoved)
+    {
+        mousePos = sf::Vector2i(e.mouseMove.x, e.mouseMove.y);
+    }
+
 	if (e.type == sf::Event::MouseButtonPressed)
 	{
-		if (e.mouseButton.button == sf::Mouse::Left)
+        if (e.mouseButton.button == sf::Mouse::Right)
 		{
-			targetPosition.x = static_cast<float>(sf::Mouse::getPosition().x);
-			targetPosition.y = static_cast<float>(sf::Mouse::getPosition().y);
+            sf::Vector2i temp(mousePos.x, mousePos.y - scrollOffset);
+            if(hasPoint(mousePos))
+                    active = true;
+            else
+                    active = false;
 		}
-	}
+
+        if(e.mouseButton.button == sf::Mouse::Left)
+         {
+            if(active)
+            {
+                std::cout<<"przypis"<<std::endl;
+                target = sf::Vector2f(mousePos.x,mousePos.y - scrollOffset);
+                targeting = true;
+            }
+         }
+    }
 }
 
-void WarriorSquirrel::Update(std::vector <Worm> worms)
+float WarriorSquirrel::dist(sf::Vector2f a, sf::Vector2f b)
 {
-	if (targetPosition != sprite.getPosition())
-	{
-		MoveToPosition(targetPosition);
-	}
-	if(TargetClosestEnemyPosition(worms)!=sprite.getPosition())
-	{ 
-		MoveToPosition(TargetClosestEnemyPosition(worms));
-	}
-	for(unsigned i = 0; i < worms.size(); ++i)
-	{
-		if (isColliding(worms.at(i)))
-		{
-			Attack(worms.at(i));
-		}
-	}
+    sf::Vector2f rel = a -b;
+    return sqrt(rel.x*rel.x + rel.y*rel.y);
+}
+
+float WarriorSquirrel::normalize(sf::Vector2f &a)
+{
+    float l = sqrt(a.x*a.x + a.y*a.y);
+    a/=l;
+}
+
+void WarriorSquirrel::targetStep()
+{
+    if(!targeting)
+        return;
+
+    sf::Vector2f distv = target - sprite.getPosition();
+    normalize(distv);
+    sprite.move(distv*WARRIORSPEED);
+}
+
+void WarriorSquirrel::Update()
+{
+
+
+    if(dist(target, sprite.getPosition())>10)
+        targetStep();
+
+    //std::cout<<"target"<<target.x<<" "<<target.y<<std::endl;
+    //std::cout<<"pos: "<<sprite.getPosition().x<<" "<<sprite.getPosition().y<<std::endl;
+    //std::cout<<"active: "<<active<<std::endl;
 }

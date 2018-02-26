@@ -68,6 +68,11 @@ bool Entity::isColliding(Entity &en)
     return(en.Left() < Right() && en.Right() > Left() && en.Top() > Bottom() && en.Top());
 }
 
+bool Entity::hasPoint(sf::Vector2i p)
+{
+    return (p.x<Right() && p.x>Left() && p.y>Top() && p.y < Bottom());
+}
+
 void Entity::move(sf::Vector2f offset)
 {
     sprite.move(offset.x, offset.y);

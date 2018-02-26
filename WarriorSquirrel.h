@@ -4,11 +4,14 @@
 #include <vector>
 #include <utility>
 #include <cmath>
+
+#define WARRIORSPEED 4.0f
+
 class WarriorSquirrel :
 	public Entity
 {
 public:
-    WarriorSquirrel(float &scroll);
+    WarriorSquirrel(float &scroll, std::vector<Worm> &worms);
 
     WarriorSquirrel& operator=(const WarriorSquirrel & w);
 
@@ -19,20 +22,17 @@ public:
 	const float range = 100;// np w pixelach, w jakims managerze obslugiwac kiedy moze atakowac??
 	const float speed = 5;
 
+    std::vector <Worm> &worms;
+
 	float cooldown;
-
-	sf::Vector2f targetPosition;
-
-	float Distance(sf::Vector2f a, sf::Vector2f b);
-
-	void Attack(Entity& character);
-
-	sf::Vector2f TargetClosestEnemyPosition(std::vector<Worm> worms);
-
-	void MoveToPosition(sf::Vector2f position);
+    bool active, targeting;
+    sf::Vector2i mousePos;
+    sf::Vector2f target;
 
 	void Input(sf::Event e);
-
-	void Update(std::vector <Worm> worms);
+    float dist(sf::Vector2f a, sf::Vector2f b);
+    float normalize(sf::Vector2f & a);
+    void targetStep();
+    void Update();
 };
 

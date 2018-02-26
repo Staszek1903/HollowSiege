@@ -31,6 +31,7 @@ public:
 	void Draw(sf::RenderWindow& win);
 
     bool isColliding(Entity & en);
+    bool hasPoint(sf::Vector2i p);
     void move(sf::Vector2f offset);
     void setPosition(sf::Vector2f);
     void rotate(float angle);
