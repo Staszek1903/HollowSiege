@@ -79,6 +79,7 @@ void Game::spawnR()
 	workSqrVec.push_back(wo1);
 	workSqrVec[workSqrVec.size() - 1].SetSpriteTexture("./gfx/wor_sqr.png");
 	workSqrVec[workSqrVec.size() - 1].sprite.setPosition(400, 2);
+	workSqrVec[workSqrVec.size() - 1].sprite.setScale(0.7, 0.7);
 }
 void Game::spawnT()
 {
@@ -86,6 +87,7 @@ void Game::spawnT()
 	warSqrVec.push_back(wo1);
 	warSqrVec[warSqrVec.size() - 1].SetSpriteTexture("./gfx/atk_sqr.png");
 	warSqrVec[warSqrVec.size() - 1].sprite.setPosition(400, 2);
+	warSqrVec[warSqrVec.size() - 1].sprite.setScale(0.7, 0.7);
 }
 void Game::input()
 {
@@ -96,7 +98,7 @@ void Game::input()
 		{
 			if (ev.key.code == sf::Keyboard::R)
 			{
-				std::cout << "R" << std::endl;
+				
 				spawnR();
 			}
 			if (ev.key.code == sf::Keyboard::T)

@@ -25,14 +25,15 @@ int Worm::findClosestSquerrel(std::vector<WorkerSquirrel> & workSquirrVec)
 	int unId = -1;
 	for (auto squerrel : workSquirrVec)
 	{
-		float dist = (squerrel.sprite.getPosition().y*squerrel.sprite.getPosition().y - this->sprite.getPosition().y*this->sprite.getPosition().y) +
-			(squerrel.sprite.getPosition().x*squerrel.sprite.getPosition().x - this->sprite.getPosition().x*this->sprite.getPosition().x);
+		float dist = (squerrel.sprite.getPosition().y  - this->sprite.getPosition().y)*(squerrel.sprite.getPosition().y - this->sprite.getPosition().y) +
+			(squerrel.sprite.getPosition().x - this->sprite.getPosition().x)*(squerrel.sprite.getPosition().x - this->sprite.getPosition().x);
 		if (dist < MAX_DIST_SQR && dist < minDist)
 		{
 			minDist = dist;
 			unId = squerrel.id;
 		}
 	}
+	std::cout << minDist << std::endl;
 	if (damageIfPossible(workSquirrVec, unId, minDist))
 	{
 		return -1;
@@ -51,7 +52,7 @@ void Worm::moveToSqrl(std::vector<WorkerSquirrel> &workSquirrVec, int id)
 			vec.y = sqrl.sprite.getPosition().y - this->sprite.getPosition().y;
 
 			float vecLengh = sqrtf(vec.x*vec.x + vec.y*vec.y);
-
+			
 			vec /= vecLengh;
 			vec.x *= 4;
 			vec.y *= 4;
@@ -81,8 +82,7 @@ bool Worm::damageIfPossible(std::vector<WorkerSquirrel> &workSquirrVec, int id, 
 		
 		if (sqrl.id == id && dist < 10000)
 		{
-			std::cout << "d: " << sqrl.HP << std::endl;
-			std::cout << "killing" << std::endl;
+			
 			sqrl.HP -= 3;
 			return true;
 		}
