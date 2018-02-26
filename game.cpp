@@ -1,15 +1,24 @@
 #include "game.h"
 
 Game::Game()
-    :scroll(0.0f), time(sf::Time::Zero), temp_nut(scroll), scroll_state(0)
+    :scroll(0.0f), time(sf::Time::Zero), temp_nut(scroll), scroll_state(0), nut_amount(0)
 {
     window.create(sf::VideoMode(800,600), "./squirrel");
     window.setFramerateLimit(60);
     //e1.SetSpriteTexture("./gfx/wor_sqr.png");
 
     bg_tex.loadFromFile("./gfx/background.png");
+    nut_tex.loadFromFile("./gfx/nut.png");
+    nut.setTexture(nut_tex);
     background.setTexture(bg_tex);
     background.setScale(sf::Vector2f(1.6f,1.2f));
+
+    comic.loadFromFile("./gfx/COMIC.TTF");
+    nut_am.setFont(comic);
+    nut_am.setString("0");
+    nut_am.setCharacterSize(64);
+    nut_am.setPosition(50,50);
+    nut_am.setFillColor(sf::Color::Black);
 
    //std::cout<< "debug" <<std::endl;
 
@@ -147,6 +156,19 @@ void Game::update()
 		wormVec.erase(wormVec.begin() + iterToRem);
 	}
 	
+
+    for(auto & work: workSqrVec)
+    {
+        if(work.update(nuts))
+        {
+            nut_amount++;
+            std::stringstream ss;
+            ss<<nut_amount;
+            nut_am.setString(ss.str());
+        }
+
+    }
+
 	iter = 0;
 	iterToRem = -1;
 	for (auto &worm : workSqrVec)
@@ -204,6 +226,8 @@ void Game::render()
     {
         nut.Draw(window);
     }
+    window.draw(nut);
+    window.draw(nut_am);
 
    // e1.Draw(window);
     window.display();
