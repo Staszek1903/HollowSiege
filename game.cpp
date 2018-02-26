@@ -106,9 +106,7 @@ void Game::update()
     else if(scroll > 100)
         scroll = 100;
 
-    //std::cout<<scroll<<std::endl;
-
-	int iter = 0;
+	int iter = 0, iterToRem =-1 ;
 
     while (nuts.size() < 10) {
         int x = engine()%600 +100;
@@ -116,6 +114,10 @@ void Game::update()
         temp_nut.setPosition(sf::Vector2f(x,y));
         nuts.push_back(temp_nut);
     }
+	for (auto & work : workSqrVec)
+	{
+		work.update(nuts);
+	}
 
 
 	for (auto &worm : wormVec)
@@ -123,11 +125,17 @@ void Game::update()
 		worm.update(workSqrVec);
 		if (worm.HP < 0.0f)
 		{
-            //wormVec.erase(wormVec.begin() + iter);
+			iterToRem = iter;
+			
 		}
 		++iter;
 	}
+	if (iterToRem > -1)
+	{
+		wormVec.erase(wormVec.begin() + iterToRem);
+	}
 	
+
     for(auto & work: workSqrVec)
     {
         if(work.update(nuts))
@@ -141,25 +149,35 @@ void Game::update()
     }
 
 	iter = 0;
+	iterToRem = -1;
 	for (auto &worm : workSqrVec)
 	{
 		//worm.update();
 		if (worm.HP < 0.f)
 		{
-			workSqrVec.erase(workSqrVec.begin() + iter);
+			iterToRem = iter;
 		}
 		++iter;
 	}
+	if (iterToRem > -1)
+	{
+		workSqrVec.erase(workSqrVec.begin() + iterToRem);
+	}
 
 	iter = 0;
+	iterToRem = -1;
 	for (auto &worm : warSqrVec)
 	{
 		//worm.update();
 		if (worm.HP < 0.f)
 		{
-			warSqrVec.erase(warSqrVec.begin() + iter);
+			iterToRem = iter;
 		}
 		++iter;
+	}
+	if (iterToRem > -1)
+	{
+		warSqrVec.erase(warSqrVec.begin() + iterToRem);
 	}
 }
 
