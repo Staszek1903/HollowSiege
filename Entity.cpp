@@ -20,8 +20,8 @@ Entity &Entity::operator=(const Entity &other)
     bounding = other.bounding;
     lastPos = other.lastPos;
     scrollOffset = other.scrollOffset;
-
-    HP = other.HP;
+	std::cout << "opp";
+	HP = other.HP;
 
     return *this;
 }

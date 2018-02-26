@@ -1,4 +1,19 @@
-﻿  Worm.cpp
-c:\users\lele\documents\visual studio 2015\projects\gra patryka\gra patryka\worm.cpp(37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+﻿  game.cpp
+c:\users\lele\documents\visual studio 2015\projects\gra patryka\gra patryka\game.cpp(82): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\lele\documents\visual studio 2015\projects\gra patryka\gra patryka\game.cpp(90): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\lele\documents\visual studio 2015\projects\gra patryka\gra patryka\game.cpp(137): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(172): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  c:\users\lele\documents\visual studio 2015\projects\gra patryka\gra patryka\game.cpp(46): note: see reference to function template instantiation 'std::pair<float,float>::pair<int,int,void,0>(_Other1 &&,_Other2 &&) noexcept' being compiled
+          with
+          [
+              _Other1=int,
+              _Other2=int
+          ]
+  c:\users\lele\documents\visual studio 2015\projects\gra patryka\gra patryka\game.cpp(46): note: see reference to function template instantiation 'std::pair<float,float>::pair<int,int,void,0>(_Other1 &&,_Other2 &&) noexcept' being compiled
+          with
+          [
+              _Other1=int,
+              _Other2=int
+          ]
   gra patryka.vcxproj -> c:\users\lele\documents\visual studio 2015\Projects\gra patryka\Debug\gra patryka.exe
   gra patryka.vcxproj -> c:\users\lele\documents\visual studio 2015\Projects\gra patryka\Debug\gra patryka.pdb (Full PDB)

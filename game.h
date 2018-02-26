@@ -31,6 +31,10 @@ class Game
 	sf::Clock clk;
 	sf::Time time;
     Nut temp_nut;
+
+	//WorkerSquirrel newWorker;
+	//WarriorSquirrel newWarior;
+	//Worm newWorm;
 public:
 	std::vector<WorkerSquirrel> workSqrVec;
 	std::vector<WarriorSquirrel> warSqrVec;
