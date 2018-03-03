@@ -43,10 +43,10 @@ Game::Game()
 
 
 	/////
-	Worm w1(std::pair<float,float>(400,300),scroll);
-	wormVec.push_back(w1);
-	wormVec[0].SetSpriteTexture("./gfx/chroboq.png");
-	wormVec[0].sprite.setScale(0.25, 0.25);
+    //Worm w1(std::pair<float,float>(400,300),scroll);
+    //wormVec.push_back(w1);
+    //wormVec[0].SetSpriteTexture("./gfx/chroboq.png");
+    //wormVec[0].sprite.setScale(0.25, 0.25);
 
 
 	////
