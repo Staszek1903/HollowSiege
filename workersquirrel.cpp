@@ -21,21 +21,12 @@ void WorkerSquirrel::set_root_level(float l)
 
 bool WorkerSquirrel::update(std::vector<Nut> &nuts)
 {
-    bool ret = false;
    // std::cout<<has_nut<<std::endl;
     if(has_nut)
     {
         float vpos = sprite.getPosition().x;
         vpos -= 400;
         float hpos = sprite.getPosition().y;
-
-        if(hpos <0)
-        {
-            has_nut = false;
-            sprite.rotate(180);
-            ret = true;
-
-        }
 
         if(abs(vpos) <20)
             move(sf::Vector2f(0, -WORKERSPEED));
@@ -46,6 +37,16 @@ bool WorkerSquirrel::update(std::vector<Nut> &nuts)
             else
                 move(sf::Vector2f(WORKERSPEED,0));
         }
+
+        if(hpos <0)
+        {
+            has_nut = false;
+            sprite.rotate(180);
+            std::cout<<"NUT"<<std::endl;
+            return true;
+
+        }
+
     }
     else
     {
@@ -79,6 +80,7 @@ bool WorkerSquirrel::update(std::vector<Nut> &nuts)
             }
             else
             {
+
                 has_nut = true;
                 nuts.erase(nuts.begin()+nut_iter);
                 sprite.rotate(180);
@@ -88,7 +90,7 @@ bool WorkerSquirrel::update(std::vector<Nut> &nuts)
 
     }
 
-    return ret;
+    return false;
 }
 
 void WorkerSquirrel::normalize(sf::Vector2f &vect)

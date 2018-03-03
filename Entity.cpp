@@ -15,7 +15,6 @@ Entity &Entity::operator=(const Entity &other)
 {
     id = other.id;
 
-    texture = other.texture;
     sprite = other.sprite;
     bounding = other.bounding;
     lastPos = other.lastPos;
@@ -26,10 +25,9 @@ Entity &Entity::operator=(const Entity &other)
     return *this;
 }
 
-void Entity::SetSpriteTexture(std::string texturePath)
+void Entity::SetSpriteTexture(sf::Texture &tex)
 {
-	texture.loadFromFile(texturePath);
-	sprite.setTexture(texture);
+    sprite.setTexture(tex);
     auto texR = sprite.getTextureRect();
     bounding = texR;
     sprite.setOrigin(texR.width/2, texR.height/2);
