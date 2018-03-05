@@ -16,12 +16,16 @@ void TexContainer::loadFromFile(std::string dir)
     {
         std::string file_dir, name;
         file>>file_dir>>name;
-        std::cout<<file_dir<<" "<<name<<std::endl;
+        //std::cout<<file_dir<<" "<<name<<std::endl;
         if(file.eof())
             break;
 
         sf::Texture temp;
-        assert(temp.loadFromFile(file_dir));
+        //assert(temp.loadFromFile(file_dir));
+		if (!temp.loadFromFile(file_dir))
+		{
+			std::cout << "not loaded: " + file_dir << std::endl;
+		}
         texs.push_back(temp);
         names[name] = texs.size()-1;
     }while(true);

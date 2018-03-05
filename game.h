@@ -12,6 +12,7 @@
 #include "TreePart.h"
 #include "nut.h"
 #include "texcontainer.h"
+#include "Base.h"
 
 class Game
 {
@@ -28,11 +29,11 @@ class Game
     int scroll_state; // 0=NULL -1=UP 1=DOWN
 
     std::default_random_engine engine;
-    float scroll;
-	sf::Clock clk;
-	sf::Time time;
+    float scroll, freqOfSpawningWorms;
+	sf::Clock clk, wormClk, gameTimeWorm;
+	sf::Time time, timeWormResp;
     Nut temp_nut;
-
+	Base base;
 	//WorkerSquirrel newWorker;
 	//WarriorSquirrel newWarior;
 	//Worm newWorm;
@@ -49,7 +50,9 @@ public:
 	void spawnT();
 private:
     void input();
-    void update();
+	void spawnWorm();
+	void manageWarmSpawn();
+	void update();
     void render();
     void nut_update(int i);
 };

@@ -2,7 +2,7 @@
 
 
 
-Worm::Worm(std::pair<float, float> coor, float & scroll) : MAX_DIST_SQR(1000000), Entity(scroll)
+Worm::Worm(std::pair<float, float> coor, float & scroll) : MAX_DIST_SQR(1000000), Entity(scroll), baseDmg(0,2)
 {
 	this->sprite.setPosition(coor.first,coor.second);
 }
@@ -54,19 +54,24 @@ void Worm::moveToSqrl(std::vector<WorkerSquirrel> &workSquirrVec, int id)
 			float vecLengh = sqrtf(vec.x*vec.x + vec.y*vec.y);
 			
 			vec /= vecLengh;
-			vec.x *= 4;
-			vec.y *= 4;
+			vec.x *= 10;
+			vec.y *= 10;
 			this->sprite.setPosition(this->sprite.getPosition().x + vec.x, this->sprite.getPosition().y + vec.y);
 		}
 	}
 }
-void Worm::moveToBase()
+void Worm::moveToBase(Base &base)
 {
 	sf::Vector2f vec;
 	vec.x = 400 - this->sprite.getPosition().x;
 	vec.y = 0 - this->sprite.getPosition().y;
 
 	float vecLengh = sqrtf(vec.x*vec.x + vec.y*vec.y);
+
+	if (vecLengh < 100)
+	{
+		base.HP -= baseDmg;
+	}
 
 	vec /= vecLengh;
 	
@@ -78,19 +83,17 @@ void Worm::moveToBase()
 bool Worm::damageIfPossible(std::vector<WorkerSquirrel> &workSquirrVec, int id, int dist)
 {
 	for (auto &sqrl : workSquirrVec)
-	{
-		
-		if (sqrl.id == id && dist < 10000)
-		{
-			
-			sqrl.HP -= 3;
+	{	
+		if (sqrl.id == id && dist < 100)
+		{		
+			sqrl.HP -= 0.9;
 			return true;
 		}
 	}
 	return false;
 }
 
-void Worm::update(std::vector<WorkerSquirrel> &workSquirrVec)
+void Worm::update(std::vector<WorkerSquirrel> &workSquirrVec, Base& base)
 {
 	int unId = findClosestSquerrel(workSquirrVec);
 
@@ -100,7 +103,7 @@ void Worm::update(std::vector<WorkerSquirrel> &workSquirrVec)
 	}
 	else
 	{
-		moveToBase();
+		moveToBase(base);
 	}
 
 }

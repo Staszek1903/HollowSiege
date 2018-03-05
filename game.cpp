@@ -1,7 +1,7 @@
 #include "game.h"
 
 Game::Game()
-    :scroll(0.0f), time(sf::Time::Zero), temp_nut(scroll), scroll_state(0), nut_amount(10)
+    :scroll(0.0f), time(sf::Time::Zero), temp_nut(scroll), scroll_state(0), nut_amount(10), freqOfSpawningWorms(15)
 {
     window.create(sf::VideoMode(800,600), "./squirrel");
     window.setFramerateLimit(60);
@@ -50,12 +50,10 @@ Game::Game()
 
 
 	/////
-    //Worm w1(std::pair<float,float>(400,300),scroll);
-    //wormVec.push_back(w1);
-    //wormVec[0].SetSpriteTexture("./gfx/chroboq.png");
-    //wormVec[0].sprite.setScale(0.25, 0.25);
-
-
+	Worm w1(std::pair<float, float>(500, 800), scroll);
+	wormVec.push_back(w1);
+	wormVec[0].SetSpriteTexture(cont.getTexture("chroboq"));
+	wormVec[0].sprite.setScale(0.25, 0.25);
 	////
 
 
@@ -142,6 +140,30 @@ void Game::input()
     }
 }
 
+void Game::spawnWorm()
+{
+	Worm w1(std::pair<float, float>(500, 800), scroll);
+	wormVec.push_back(w1);
+	wormVec[wormVec.size() - 1].SetSpriteTexture(cont.getTexture("chroboq"));
+	wormVec[wormVec.size() - 1].sprite.setScale(0.25, 0.25);
+}
+
+void Game::manageWarmSpawn()
+{
+	timeWormResp += wormClk.restart();
+	
+	if (freqOfSpawningWorms > 1 && gameTimeWorm.getElapsedTime().asSeconds() > 20)
+	{
+		freqOfSpawningWorms /= 1.5;
+		gameTimeWorm.restart();
+	}
+
+	if (timeWormResp.asSeconds() > freqOfSpawningWorms)
+	{
+		spawnWorm();
+		timeWormResp = sf::Time::Zero;
+	}
+}
 void Game::update()
 {
     scroll += 10 * scroll_state;
@@ -154,8 +176,8 @@ void Game::update()
 	int iter = 0, iterToRem =-1 ;
 
     while (nuts.size() < 10) {
-        int x = engine()%600 +100;
-        int y = engine()%100 + 2300;
+        int x = engine() % 600 + 100;
+        int y = engine() % 100 + 2300;
         temp_nut.setPosition(sf::Vector2f(x,y));
         nuts.push_back(temp_nut);
     }
@@ -172,7 +194,7 @@ void Game::update()
 
 	for (auto &worm : wormVec)
 	{
-		worm.update(workSqrVec);
+		worm.update(workSqrVec, base);
 		if (worm.HP < 0.0f)
 		{
 			iterToRem = iter;
@@ -230,6 +252,14 @@ void Game::update()
 	{
 		warSqrVec.erase(warSqrVec.end() + iterToRem);
 	}
+	manageWarmSpawn();
+	std::cout << base.HP << std::endl;
+	if (base.HP <= 0)
+	{
+		std::cout << "YOU HAVE LOST!" << std::endl;
+		system("pause");
+	}
+
 }
 
 void Game::render()
