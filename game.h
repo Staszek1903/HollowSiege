@@ -11,14 +11,15 @@
 #include "Worm.h"
 #include "TreePart.h"
 #include "nut.h"
+#include "texcontainer.h"
 
 class Game
 {
     sf::RenderWindow window;
     //Entity e1;
 
-    sf::Sprite background, nut;
-    sf::Texture bg_tex, nut_tex;
+    TexContainer cont;
+    sf::Sprite background, nut, wor_inst, atk_inst;
 
     sf::Font comic;
     sf::Text nut_am;
@@ -50,6 +51,7 @@ private:
     void input();
     void update();
     void render();
+    void nut_update(int i);
 };
 
 #endif // GAME_H

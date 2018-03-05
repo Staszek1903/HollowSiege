@@ -12,7 +12,8 @@ SOURCES += main.cpp \
     Worm.cpp \
     workersquirrel.cpp \
     nut.cpp \
-    TreePart.cpp
+    TreePart.cpp \
+    texcontainer.cpp
 
 HEADERS += \
     game.h \
@@ -21,4 +22,5 @@ HEADERS += \
     Worm.h \
     workersquirrel.h \
     nut.h \
-    TreePart.h
+    TreePart.h \
+    texcontainer.h

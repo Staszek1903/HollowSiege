@@ -1,21 +1,28 @@
 #include "game.h"
 
 Game::Game()
-    :scroll(0.0f), time(sf::Time::Zero), temp_nut(scroll), scroll_state(0), nut_amount(0)
+    :scroll(0.0f), time(sf::Time::Zero), temp_nut(scroll), scroll_state(0), nut_amount(10)
 {
     window.create(sf::VideoMode(800,600), "./squirrel");
     window.setFramerateLimit(60);
     //e1.SetSpriteTexture("./gfx/wor_sqr.png");
 
-    bg_tex.loadFromFile("./gfx/background.png");
-    nut_tex.loadFromFile("./gfx/nut.png");
-    nut.setTexture(nut_tex);
-    background.setTexture(bg_tex);
+    cont.loadFromFile("./gfx/tex_dirs.conf");
+
+    nut.setTexture(cont.getTexture("nut"));
+    background.setTexture(cont.getTexture("background"));
     background.setScale(sf::Vector2f(1.6f,1.2f));
+
+    wor_inst.setTexture(cont.getTexture("wor_inst"));
+    wor_inst.setPosition(sf::Vector2f(0,150));
+    wor_inst.setScale(sf::Vector2f(0.5f,0.5f));
+    atk_inst.setTexture(cont.getTexture("atk_inst"));
+    atk_inst.setPosition(sf::Vector2f(0,250));
+    atk_inst.setScale(sf::Vector2f(0.5f,0.5f));
 
     comic.loadFromFile("./gfx/COMIC.TTF");
     nut_am.setFont(comic);
-    nut_am.setString("0");
+    nut_am.setString("10");
     nut_am.setCharacterSize(64);
     nut_am.setPosition(50,50);
     nut_am.setFillColor(sf::Color::Black);
@@ -31,22 +38,22 @@ Game::Game()
 	for (int i = 0; i < 4; ++i)
 	{
         treeParts[i].setPosition(sf::Vector2f(400.0f,512.0f*i));
-        treeParts[i].SetSpriteTexture("./gfx/pien.png");
+        treeParts[i].SetSpriteTexture(cont.getTexture("pien"));
 	}
     treeParts[4].setPosition({ 400,0 });
-    treeParts[4].SetSpriteTexture("./gfx/dziupla.png");
+    treeParts[4].SetSpriteTexture(cont.getTexture("dziupla"));
 
 	treeParts[5].setPosition({ 390,2188 });
-	treeParts[5].SetSpriteTexture("./gfx/korzen.png");
+    treeParts[5].SetSpriteTexture(cont.getTexture("korzen"));
     //std::cout<< "debug2" <<std::endl;
 
 
 
 	/////
-	Worm w1(std::pair<float,float>(400,300),scroll);
-	wormVec.push_back(w1);
-	wormVec[0].SetSpriteTexture("./gfx/chroboq.png");
-	wormVec[0].sprite.setScale(0.25, 0.25);
+    //Worm w1(std::pair<float,float>(400,300),scroll);
+    //wormVec.push_back(w1);
+    //wormVec[0].SetSpriteTexture("./gfx/chroboq.png");
+    //wormVec[0].sprite.setScale(0.25, 0.25);
 
 
 	////
@@ -54,7 +61,7 @@ Game::Game()
 
 
 
-    temp_nut.SetSpriteTexture("./gfx/nut.png");
+    temp_nut.SetSpriteTexture(cont.getTexture("nut"));
     temp_nut.setPosition(sf::Vector2f(400,2048));
 }
 
@@ -75,17 +82,27 @@ void Game::run()
 
 void Game::spawnR()
 {
+    if(nut_amount < 1)
+        return;
+
+    nut_update(-1);
+
 	WorkerSquirrel wo1(scroll);
 	workSqrVec.push_back(wo1);
-	workSqrVec[workSqrVec.size() - 1].SetSpriteTexture("./gfx/wor_sqr.png");
+    workSqrVec[workSqrVec.size() - 1].SetSpriteTexture(cont.getTexture("wor_sqr"));
 	workSqrVec[workSqrVec.size() - 1].sprite.setPosition(400, 2);
 	workSqrVec[workSqrVec.size() - 1].sprite.setScale(0.7, 0.7);
 }
 void Game::spawnT()
 {
+    if(nut_amount < 3)
+        return;
+
+    nut_update(-3);
+
     WarriorSquirrel wo1(scroll, wormVec);
 	warSqrVec.push_back(wo1);
-	warSqrVec[warSqrVec.size() - 1].SetSpriteTexture("./gfx/atk_sqr.png");
+    warSqrVec[warSqrVec.size() - 1].SetSpriteTexture(cont.getTexture("atk_sqr"));
 	warSqrVec[warSqrVec.size() - 1].sprite.setPosition(400, 2);
 	warSqrVec[warSqrVec.size() - 1].sprite.setScale(0.7, 0.7);
 }
@@ -173,10 +190,8 @@ void Game::update()
     {
         if(work.update(nuts))
         {
-            nut_amount++;
-            std::stringstream ss;
-            ss<<nut_amount;
-            nut_am.setString(ss.str());
+            std::cout<<"ack"<<std::endl;
+            nut_update(1);
         }
 
     }
@@ -241,9 +256,20 @@ void Game::render()
     {
         nut.Draw(window);
     }
+
+    window.draw(wor_inst);
+    window.draw(atk_inst);
     window.draw(nut);
     window.draw(nut_am);
 
    // e1.Draw(window);
     window.display();
+}
+
+void Game::nut_update(int i)
+{
+    nut_amount+=i;
+    std::stringstream ss;
+    ss<<nut_amount;
+    nut_am.setString(ss.str());
 }

@@ -14,7 +14,6 @@ public:
 
     int id;
 
-	sf::Texture texture;
 	sf::Sprite sprite;
     sf::Rect<int> bounding;
     sf::Vector2f lastPos;
@@ -27,7 +26,7 @@ public:
 	float Top();
 	float Bottom();
 
-	void SetSpriteTexture(std::string texturePath);
+    void SetSpriteTexture(sf::Texture& tex);
 	void Draw(sf::RenderWindow& win);
 
     bool isColliding(Entity & en);
