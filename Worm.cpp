@@ -33,7 +33,7 @@ int Worm::findClosestSquerrel(std::vector<WorkerSquirrel> & workSquirrVec)
 			unId = squerrel.id;
 		}
 	}
-	//std::cout << minDist << std::endl;
+
 	if (damageIfPossible(workSquirrVec, unId, minDist))
 	{
 		return -1;
