@@ -226,15 +226,27 @@ void Game::update()
 		//worm.update();
 		if (worm.HP < 0)
 		{
+			std::cout << "tt";
 			iterToRem = iter;
 		}
 		++iter;
 	}
-	std::cout <<std::endl;
+	std::cout << std::endl;
 	if (iterToRem > -1)
 	{
 		std::cout << " kill " << iterToRem << std::endl;
+		std::cout << workSqrVec[iterToRem].HP;
+		for (auto &worm : workSqrVec)
+		{
+			std::cout << "ID:" << worm.id << " HP:" << worm.HP << ":::";
+		}
+
 		workSqrVec.erase(workSqrVec.begin() + iterToRem);
+
+		for (auto &worm : workSqrVec)
+		{
+			std::cout << "ID:"<<worm.id << " HP:" << worm.HP << ":::";
+		}
 	}
 
 	iter = 0;

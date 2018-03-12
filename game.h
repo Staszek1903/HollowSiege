@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <random>
 #include <sstream>
+#include <vector>
 #include "Entity.h"
 #include "WarriorSquirrel.h"
 #include "workersquirrel.h"

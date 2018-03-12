@@ -11,6 +11,13 @@ WorkerSquirrel& WorkerSquirrel::operator =(const WorkerSquirrel &w)
 {
     root_level = w.root_level;
     has_nut = w.has_nut;
+	id = w.id;
+	HP = w.HP;
+
+	sprite = w.sprite;
+	bounding = w.bounding;
+	lastPos = w.lastPos;
+	scrollOffset = w.scrollOffset;
     return *this;
 }
 

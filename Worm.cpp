@@ -2,7 +2,7 @@
 
 
 
-Worm::Worm(std::pair<float, float> coor, float & scroll) : MAX_DIST_SQR(1000000), Entity(scroll), baseDmg(0,2)
+Worm::Worm(std::pair<float, float> coor, float & scroll) : MAX_DIST_SQR(1000000), Entity(scroll), baseDmg(0.2)
 {
 	this->sprite.setPosition(coor.first,coor.second);
 }
@@ -86,7 +86,7 @@ bool Worm::damageIfPossible(std::vector<WorkerSquirrel> &workSquirrVec, int id, 
 	{	
 		if (sqrl.id == id && dist < 100)
 		{		
-			sqrl.HP -= 0.9;
+			sqrl.HP -= 1.5;
 			return true;
 		}
 	}
